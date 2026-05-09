@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Park Su-yong | AI Software Student & Developer Portfolio">
+    <title>Park Su-yong | Portfolio</title>
+
+    <!-- Google Font 연결 -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome 아이콘 연결 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- CSS 파일 연결 -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- 어두운 오버레이 -->
+    <div class="overlay"></div>
+
+    <!-- 배경 이미지 -->
+    <div class="background-image"></div>
+
+    <!-- 상단 정보 영역 -->
+    <header class="header">
+        <div class="logo">[DEV.LOG]</div>
+
+        <div class="description">
+            AI Software Student.<br>
+            Exploring C, Java, and Linux.
+        </div>
+
+        <div class="contact">
+            hello@suyong.dev<br>
+            EST. 2026
+        </div>
+    </header>
+
+    <!-- 메인 콘텐츠 영역 -->
+    <main class="main-content">
+
+        <!-- Info 섹션 -->
+        <section id="info" class="content-section active">
+            <div class="info-list">
+                <div class="sub-info">AI Software Dept.</div>
+                <div class="sub-info">Semicolon Club Member</div>
+                <div class="sub-info">
+                    <a href="https://github.com/psy0635-ctrl" target="_blank">
+                        <i class="fab fa-github"></i> github.com/psy0635-ctrl
+                    </a>
+                </div>
+            </div>
+
+            <h1 class="hero-title">
+                HELLO, I'M <span class="highlight">PARK</span><br>
+                <span class="highlight">SU-YONG</span><br>
+                STUDENT & DEVELOPER
+            </h1>
+        </section>
+
+        <!-- Projects 섹션 -->
+        <section id="projects" class="content-section">
+            <h2 class="section-title">PROJECTS</h2>
+
+            <div class="project-grid">
+                <div class="project-card">
+                    <h3>C Calculator</h3>
+                    <p>Semicolon Club Project - Division Function Implementation</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stacks 섹션 -->
+        <section id="stacks" class="content-section">
+            <h2 class="section-title">STACKS</h2>
+
+            <div class="stack-list">
+                <span>C / C#</span>
+                <span>Java</span>
+                <span>Python (OpenCV)</span>
+                <span>Linux</span>
+                <span>Git & GitHub</span>
+            </div>
+        </section>
+    </main>
+
+    <!-- 하단 고정 메뉴 -->
+    <nav class="floating-nav">
+        <div class="nav-container">
+            <span class="nav-logo">[DEV.LOG]</span>
+
+            <a href="#" class="nav-item active" data-target="info">Info</a>
+            <a href="#" class="nav-item" data-target="projects">Projects</a>
+            <a href="#" class="nav-item" data-target="stacks">Stacks</a>
+
+            <a href="https://github.com/psy0635-ctrl" target="_blank" class="nav-item yellow">
+                Visit GitHub
+            </a>
+        </div>
+    </nav>
+
+    <!-- 메뉴 클릭 시 화면 전환 스크립트 -->
+    <script>
+        document.querySelectorAll('.nav-item[data-target]').forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+
+                const targetId = item.getAttribute('data-target');
+
+                document.querySelectorAll('.content-section').forEach(sec => {
+                    sec.classList.remove('active');
+                });
+
+                document.querySelectorAll('.nav-item').forEach(nav => {
+                    nav.classList.remove('active');
+                });
+
+                document.getElementById(targetId).classList.add('active');
+                item.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

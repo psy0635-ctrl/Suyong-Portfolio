@@ -1,0 +1,289 @@
+/* 전체 기본 설정 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* body 전체 화면 설정 */
+body {
+    background-color: #000;
+    color: #fff;
+    font-family: 'Inter', 'Noto Sans KR', sans-serif;
+    overflow: hidden;
+    height: 100vh;
+}
+
+/* 배경 이미지 */
+.background-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2070') no-repeat center center;
+    background-size: cover;
+
+    filter: grayscale(100%) brightness(40%);
+    z-index: -2;
+}
+
+/* 배경 위 어두운 효과 */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background: radial-gradient(circle, transparent 20%, #000 150%);
+    z-index: -1;
+}
+
+/* 기본 섹션은 숨김 */
+.content-section {
+    display: none;
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* active가 붙은 섹션만 화면에 표시 */
+.content-section.active {
+    display: flex;
+    flex-direction: column;
+}
+
+/* 화면 전환 애니메이션 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 상단 헤더 */
+.header {
+    display: flex;
+    justify-content: flex-start;
+    gap: 80px;
+
+    padding: 40px 60px;
+
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* 상단 설명, 연락처 */
+.description,
+.contact {
+    opacity: 0.7;
+    line-height: 1.6;
+}
+
+/* 로고 */
+.logo {
+    font-weight: 900;
+}
+
+/* 메인 콘텐츠 */
+.main-content {
+    height: calc(100vh - 150px);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+    padding-left: 60px;
+    padding-bottom: 60px;
+
+    position: relative;
+}
+
+/* 정보 리스트 */
+.info-list {
+    margin-bottom: 30px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* 작은 정보 텍스트 */
+.sub-info {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    opacity: 0.6;
+    letter-spacing: 2px;
+}
+
+/* GitHub 링크 */
+.sub-info a {
+    color: #fff;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.sub-info a:hover {
+    opacity: 1;
+    color: #eaff96;
+}
+
+/* 메인 큰 제목 */
+.hero-title {
+    font-size: 7.5rem;
+    line-height: 0.85;
+
+    text-align: left;
+    letter-spacing: -5px;
+    font-weight: 900;
+}
+
+/* 외곽선 글자 효과 */
+.highlight {
+    color: rgba(255, 255, 255, 0.92);
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.75);
+}
+
+/* 섹션 제목 */
+.section-title {
+    font-size: 4rem;
+    font-weight: 900;
+
+    margin-bottom: 20px;
+    color: #eaff96;
+}
+
+/* 프로젝트 카드 */
+.project-card {
+    border-left: 2px solid rgba(255, 255, 255, 0.2);
+    padding-left: 20px;
+    margin-bottom: 20px;
+}
+
+/* 기술 스택 리스트 */
+.stack-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+
+    max-width: 600px;
+}
+
+/* 기술 스택 아이템 */
+.stack-list span {
+    font-size: 1.2rem;
+    font-weight: 700;
+
+    padding: 5px 15px;
+
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* 하단 고정 메뉴 */
+.floating-nav {
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    background: rgba(25, 25, 25, 0.85);
+    backdrop-filter: blur(15px);
+
+    padding: 8px;
+    border-radius: 14px;
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    z-index: 100;
+}
+
+/* 메뉴 내부 정렬 */
+.nav-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* 메뉴 왼쪽 로고 */
+.nav-logo {
+    font-weight: 900;
+    font-size: 0.85rem;
+    color: #fff;
+
+    margin-right: 10px;
+    padding-left: 10px;
+}
+
+/* 기본 메뉴 버튼 */
+.nav-item {
+    color: #777;
+
+    padding: 10px 22px;
+
+    cursor: pointer;
+    font-size: 0.85rem;
+
+    transition: 0.3s;
+    text-decoration: none;
+}
+
+/* 메뉴 hover 효과 */
+.nav-item:hover {
+    color: #fff;
+}
+
+/* 선택된 메뉴 */
+.nav-item.active {
+    color: #fff;
+    position: relative;
+}
+
+/* 선택된 메뉴 밑줄 */
+.nav-item.active::after {
+    content: '';
+
+    position: absolute;
+    bottom: 5px;
+    left: 22px;
+    right: 22px;
+
+    height: 1px;
+
+    background: #fff;
+}
+
+/* Visit GitHub 버튼 */
+.nav-item.yellow {
+    background: #eaff96;
+    color: #000;
+
+    border-radius: 10px;
+    font-weight: 800;
+}
+
+/* 태블릿 화면 */
+@media (max-width: 1024px) {
+    .hero-title {
+        font-size: 5rem;
+        letter-spacing: -2px;
+    }
+}
+
+/* 모바일 화면 */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 3.5rem;
+    }
+
+    .main-content {
+        padding-left: 30px;
+    }
+}
