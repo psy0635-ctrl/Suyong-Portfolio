@@ -161,10 +161,78 @@ body {
 }
 
 /* 프로젝트 카드 */
+.project-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+
+    max-width: 760px;
+}
+
 .project-card {
     border-left: 2px solid rgba(255, 255, 255, 0.2);
     padding-left: 20px;
     margin-bottom: 20px;
+}
+
+.project-card h3 {
+    font-size: 1.45rem;
+    margin-bottom: 8px;
+}
+
+.project-card p {
+    color: rgba(255, 255, 255, 0.78);
+    line-height: 1.6;
+}
+
+.project-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    margin-top: 14px;
+}
+
+.project-tech span {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+
+    padding: 4px 10px;
+
+    color: #eaff96;
+    border: 1px solid rgba(234, 255, 150, 0.35);
+}
+
+.project-features {
+    margin-top: 14px;
+    padding-left: 18px;
+
+    color: rgba(255, 255, 255, 0.72);
+    line-height: 1.7;
+    font-size: 0.95rem;
+}
+
+.project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    margin-top: 14px;
+
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+
+    transition: 0.3s;
+}
+
+.project-link:hover {
+    color: #eaff96;
 }
 
 /* 기술 스택 리스트 */
