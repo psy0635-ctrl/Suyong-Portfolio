@@ -26,6 +26,31 @@
 
 ## Featured Project
 
+### SEMICOLON TEAM PAGE
+
+Semicolon 팀원 소개와 프로젝트 링크를 정리한 팀 페이지입니다.
+
+팀 프로젝트 결과물을 온라인에서 쉽게 확인할 수 있도록 구성했으며, GitHub Repository와 Vercel 배포 링크를 연결했습니다.
+
+**Tech Stack**
+
+`HTML` · `CSS` · `GitHub` · `Vercel`
+
+**주요 기능**
+
+- 팀원 소개 페이지 구성
+- 프로젝트 GitHub Repository 링크 연결
+- Vercel을 활용한 정적 웹사이트 배포
+- 팀 프로젝트 결과물 공유용 페이지 제작
+
+**GitHub**
+
+https://github.com/hazyala/semicolon-teampage
+
+**Live Demo**
+
+https://semicolon-teampage.vercel.app
+
 ### WEATHER FIT TALK
 
 날씨와 상황에 맞는 옷차림을 추천하는 로컬 LLM 기반 AI 스타일링 챗봇입니다.
