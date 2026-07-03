@@ -314,6 +314,15 @@ body {
     color: #eaff96;
 }
 
+.project-link.unavailable {
+    color: rgba(255, 255, 255, 0.45);
+    cursor: default;
+}
+
+.project-link.unavailable:hover {
+    color: rgba(255, 255, 255, 0.45);
+}
+
 /* 기술 스택 리스트 */
 .stack-list {
     display: flex;
