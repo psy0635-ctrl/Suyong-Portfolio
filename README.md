@@ -31,7 +31,7 @@
 |------|------|
 | **Language** | C, C#, Java, Python |
 | **Frontend** | HTML5, CSS3, Responsive UI, Glassmorphism |
-| **AI / Vision** | OpenCV, NumPy, Local LLM (Ollama, Gemma), LangChain, Claude API |
+| **AI / Vision** | OpenCV, NumPy, Local LLM (Ollama, Gemma), MCP (Model Context Protocol) |
 | **Backend / DB** | FastAPI, MySQL, SQL, Database Modeling, Pandas |
 | **System** | Linux, Git, GitHub |
 | **Deploy** | Vercel, GitHub Pages, Streamlit Community Cloud |
