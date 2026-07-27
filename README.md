@@ -41,36 +41,44 @@
 
 ## Projects
 
-### 1. 유시스(Waple) — HR AI Report System
+### 1. Waple 업무일지 MCP 서버 — 기업 연계 인턴 프로젝트
 
-> HR SaaS 플랫폼 Waple에 AI 리포트 기능을 붙이는 실무형 팀 프로젝트
+> Git 기록과 세션 로그에서 하루 작업 근거를 모아 업무일지 초안을 만들고,
+> 사용자가 승인한 내용만 HR SaaS 플랫폼에 등록하는 MCP 서버
 
 **개발 배경**
 
-미래내일 일경험(프로젝트형) 프로그램으로, 유시스(UXIS)의 HR SaaS 플랫폼 Waple에 AI 기능을 추가하는 실무 프로젝트입니다. 직원 데이터를 AI가 분석하여 관리자에게는 주간 조직 현황, 근로자에게는 개인 인사이트 리포트를 자동으로 생성하는 것이 목표입니다.
+미래내일 일경험(프로젝트형)으로 유시스(UXIS)의 HR SaaS 플랫폼 Waple에 AI 기능을 추가한 8주 팀 프로젝트입니다.
+팀은 AI 리포트 파트와 MCP 파트로 나뉘어 진행하였고, 저는 **팀장 겸 MCP 서버 개발을 전담**하였습니다.
 
-**담당 역할**
-
-팀장 + LLM 개발 담당. Claude API를 활용한 리포트 생성 파이프라인 설계 및 구현을 맡았습니다.
+업무일지는 인사 평가의 기초 자료지만 하루가 끝날 무렵 기억에 의존해 작성되어
+"개발 진행함" 같은 내용 없는 기록이 쌓입니다.
+이미 커밋과 변경 파일에 근거가 남아 있다는 점에 착안해,
+**근거를 모아 초안을 만들고 사람은 확인만 하는** 구조로 설계하였습니다.
 
 **주요 구현**
 
-- Claude API를 활용한 HR 데이터 기반 AI 리포트 자동 생성
-- 점수 → 원인 → 액션까지 연결되는 3단계 리포트 구조 설계
-- FastAPI 기반 API 서버 구축 (`POST /api/report/admin`, `POST /api/report/individual`)
-- LangChain으로 LLM 호출 흐름 관리
-- MCP(Model Context Protocol) 활용 업무일지 자동 작성 기능 개발
+- 초안 생성과 등록을 별도 도구로 분리 — "정리해줘"에는 등록이 실행되지 않음
+- 모든 항목에 작성 근거 라벨 부착(`[커밋]` / `[사용자 메모]` / `[세션 로그]`), 근거 없는 내용은 "확인 필요"로 분리
+- 로컬(stdio)과 원격(Streamable HTTP) 이중 transport — 원격에서는 세션 로그 접근이 불가해 한쪽으로 통일할 수 없었음
+- 원격 다중 사용자 환경에서 `ContextVar` 기반 요청별 키·초안 격리 (코드 리뷰 지적을 받고 재설계)
+- nginx + HTTPS 배포, sudo 권한이 제한된 환경에서 사용자 단위 systemd로 자동 재시작 구성
 
-**설계 특징**
+**기록한 것**
 
-단순 점수 출력이 아닌 "점수 → 원인 → 액션 제안"까지 연결되는 구조를 설계했습니다. 관리자는 조직 전체의 목표/근태/업무일지 종합 상태를, 근로자는 번아웃 리스크·이직 리스크·개선 제안을 AI 리포트로 받아볼 수 있습니다.
+성공한 부분만이 아니라 **막힌 지점과 미해결 항목까지** 문서에 남겼습니다.
+421 오류의 원인이 된 DNS Rebinding 방지 설정, 인증서 중간 체인 누락, API 키 평문 노출 사고와 그 대응,
+웹 커넥터가 동작하지 않는 이유를 서버 로그로 특정한 과정 등입니다.
+각 항목은 실물 검증 / 설정 확인 / 미검증으로 등급을 구분해 표기하였습니다.
 
 | 항목 | 내용 |
 |------|------|
-| **Stack** | Python, LangChain, FastAPI, Claude API, Pandas, HuggingFace, FAISS |
-| **유형** | 4인 팀 프로젝트 (팀장) |
+| **Stack** | Python, MCP Python SDK(FastMCP), requests, pytest, nginx, systemd |
+| **유형** | 4인 팀 프로젝트 (팀장 · MCP 서버 전담) |
 | **기간** | 2026.06.01 ~ 07.26 (8주) |
-| **GitHub** | 비공개 또는 공개 링크 확인 필요 |
+| **테스트** | 23종 (22 passed, 1 skipped) |
+| **GitHub** | https://github.com/psy0635-ctrl/waple-worklog-mcp-portfolio |
+| **상세 문서** | 저장소의 `docs/waple-worklog-mcp-상세설명.pdf` (9p) |
 
 ---
 
@@ -292,7 +300,7 @@ main에서 1차 검사, `divide()` 내부에서 2차 검사를 적용했습니�
 
 | 활동 | 상태 |
 |------|------|
-| 미래내일 일경험 — 유시스 Waple AI Report | 진행 중 (2026.06~07) |
+| 미래내일 일경험 — 유시스 Waple 업무일지 MCP 서버 | 완료 (2026.06~07) |
 | Semicolon 개발 동아리 활동 | 진행 중 |
 | Linux Master 2급 학습 | 진행 중 |
 | Git & GitHub 협업 흐름 학습 | 진행 중 |
@@ -306,6 +314,7 @@ main에서 1차 검사, `divide()` 내부에서 2차 검사를 적용했습니�
 
 ```
 psy0635-ctrl/
+├── waple-worklog-mcp-portfolio # 업무일지 MCP 서버 (Python, 인턴 프로젝트)
 ├── Suyong-Portfolio           # 포트폴리오 웹사이트 (HTML/CSS)
 ├── catalogguard-lite          # 상품 카탈로그 CSV 데이터 검수 도구 (Streamlit)
 ├── HTML_Project               # FIT FINDER 패션 가이드 웹 (HTML/CSS)
@@ -324,7 +333,7 @@ psy0635-ctrl/
 ## Goals
 
 **단기**
-- 유시스 Waple AI Report 프로젝트 완성 (2026.07)
+- Waple 업무일지 MCP 서버 개선 이어가기 (종료 후 지속)
 - GitHub 포트폴리오 완성도 강화
 - FIT FINDER JavaScript 인터랙션 추가
 
