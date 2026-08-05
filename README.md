@@ -246,7 +246,7 @@ OpenAI · Gemini API Key 없이 로컬 환경에서 실행 가능한 AI 챗봇�
 |------|------|
 | **Stack** | Java, IntelliJ IDEA |
 | **유형** | 개인 프로젝트 (수업 과제) |
-| **GitHub** | https://github.com/psy0635-ctrl |
+| **GitHub** | [Java_Project/src/Java_Project/SafeTrade.java](https://github.com/psy0635-ctrl/Java_Project/blob/main/src/Java_Project/SafeTrade.java) (Java_Project 레포 내 중간고사 과제) |
 
 ---
 
@@ -276,7 +276,7 @@ main에서 1차 검사, `divide()` 내부에서 2차 검사를 적용했습니�
 |------|------|
 | **Stack** | C, GCC, Git, GitHub |
 | **유형** | 5인 팀 프로젝트 |
-| **GitHub** | 저장소 정리 후 추가 예정 |
+| **GitHub** | [Semicolon/C언어 사칙연산 계산기 팀 프로젝트](https://github.com/psy0635-ctrl/Semicolon/tree/main/C%EC%96%B8%EC%96%B4%20%EC%82%AC%EC%B9%99%EC%97%B0%EC%82%B0%20%EA%B3%84%EC%82%B0%EA%B8%B0%20%ED%8C%80%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8) (독립 저장소 아님) |
 
 ---
 
