@@ -1,357 +1,500 @@
-# Suyong Park — Developer Portfolio
+Suyong Park — Developer Portfolio
 
 <div align="center">
 
-**AI Software Student · Backend · Computer Vision · Web · Database**
+Python Backend · FastAPI · Data Quality / ETL · AI Workflow
 
-배운 것을 코드로 확인하고, 만든 것을 기록으로 남기는 개발자 박수용입니다.<br/>
-직접 만들고 오류를 해결하는 과정에서 깊게 배운다고 믿습니다.
+Python과 FastAPI를 중심으로 데이터가 들어오고, 검증되고, 저장되고, 처리되고, 배포되는 전체 흐름을 직접 구현하고 있습니다.<br/>기능 개수보다 문제 원인 파악 → 구조 개선 → 테스트 → 배포 검증 → 문서화까지 끝내는 개발을 지향합니다.
 
-[![GitHub](https://img.shields.io/badge/GitHub-psy0635--ctrl-181717?style=flat-square&logo=github)](https://github.com/psy0635-ctrl)
-[![Portfolio](https://img.shields.io/badge/Portfolio-suyong--portfolio.vercel.app-000000?style=flat-square&logo=vercel)](https://suyong-portfolio.vercel.app)
+
 
 </div>
 
----
+About Me
 
-## About Me
+주력 직무: Python · FastAPI 백엔드 개발
 
-| 키워드 | 설명 |
-|--------|------|
-| **Builder** | 배운 내용을 바로 코드로 구현하며 이해합니다. |
-| **Explorer** | Backend, AI, Vision, Web, DB를 폭넓게 실험합니다. |
-| **Collaborator** | Git 브랜치 전략과 PR 기반 팀 협업을 경험했습니다. |
-| **Recorder** | 학습 과정과 결과물을 GitHub에 꾸준히 정리합니다. |
+관심 분야: AI 서비스 백엔드, 데이터 품질, ETL, 데이터 플랫폼, 패션·이커머스 백엔드
 
----
+개발 방식: 작은 기능부터 구현하고 테스트로 검증한 뒤, CI와 문서까지 함께 관리합니다.
 
-## Tech Stack
+문제 해결 경험: 중복 처리, 비동기 작업, 데이터 표준화, DB 마이그레이션, 트랜잭션, Audit, Rollback, Docker·AWS 실행 검증을 경험했습니다.
 
-| 분류 | 기술 |
-|------|------|
-| **Language** | C, C#, Java, Python |
-| **Frontend** | HTML5, CSS3, Responsive UI, Glassmorphism |
-| **AI / Vision** | OpenCV, NumPy, Local LLM (Ollama, Gemma), MCP (Model Context Protocol) |
-| **Backend / DB** | FastAPI, MySQL, SQL, Database Modeling, Pandas |
-| **System** | Linux, Git, GitHub |
-| **Deploy** | Vercel, GitHub Pages, Streamlit Community Cloud |
-| **Tools** | Streamlit, pytest, DuckDuckGo Search API |
+협업 경험: 기업 연계 4인 팀 프로젝트에서 팀 리드와 MCP 서버 개발을 담당했습니다.
 
----
+Tech Stack
 
-## Projects
+분류
 
-### 1. Waple 업무일지 MCP 서버 — 기업 연계 인턴 프로젝트
+기술
 
-> Git 기록과 세션 로그에서 하루 작업 근거를 모아 업무일지 초안을 만들고,
-> 사용자가 승인한 내용만 HR SaaS 플랫폼에 등록하는 MCP 서버
+Core Backend
 
-**개발 배경**
+Python, FastAPI, PostgreSQL, SQLAlchemy, Alembic
 
-미래내일 일경험(프로젝트형)으로 유시스(UXIS)의 HR SaaS 플랫폼 Waple에 AI 기능을 추가한 8주 팀 프로젝트입니다.
-팀은 AI 리포트 파트와 MCP 파트로 나뉘어 진행하였고, 저는 **팀장 겸 MCP 서버 개발을 전담**하였습니다.
+Data / ETL
 
-업무일지는 인사 평가의 기초 자료지만 하루가 끝날 무렵 기억에 의존해 작성되어
-"개발 진행함" 같은 내용 없는 기록이 쌓입니다.
-이미 커밋과 변경 파일에 근거가 남아 있다는 점에 착안해,
-**근거를 모아 초안을 만들고 사람은 확인만 하는** 구조로 설계하였습니다.
+pandas, SQL, CSV Processing, Data Validation, Supplier Profile Mapping
 
-**주요 구현**
+Async / Queue
 
-- 초안 생성과 등록을 별도 도구로 분리 — "정리해줘"에는 등록이 실행되지 않음
-- 모든 항목에 작성 근거 라벨 부착(`[커밋]` / `[사용자 메모]` / `[세션 로그]`), 근거 없는 내용은 "확인 필요"로 분리
-- 로컬(stdio)과 원격(Streamable HTTP) 이중 transport — 원격에서는 세션 로그 접근이 불가해 한쪽으로 통일할 수 없었음
-- 원격 다중 사용자 환경에서 `ContextVar` 기반 요청별 키·초안 격리 (코드 리뷰 지적을 받고 재설계)
-- nginx + HTTPS 배포, sudo 권한이 제한된 환경에서 사용자 단위 systemd로 자동 재시작 구성
+Redis, Celery
 
-**기록한 것**
+Test / Quality
 
-성공한 부분만이 아니라 **막힌 지점과 미해결 항목까지** 문서에 남겼습니다.
-421 오류의 원인이 된 DNS Rebinding 방지 설정, 인증서 중간 체인 누락, API 키 평문 노출 사고와 그 대응,
-웹 커넥터가 동작하지 않는 이유를 서버 로그로 특정한 과정 등입니다.
-각 항목은 실물 검증 / 설정 확인 / 미검증으로 등급을 구분해 표기하였습니다.
+pytest, Unit Test, Integration Test, Browser E2E, GitHub Actions
 
-| 항목 | 내용 |
-|------|------|
-| **Stack** | Python, MCP Python SDK(FastMCP), requests, pytest, nginx, systemd |
-| **유형** | 4인 팀 프로젝트 (팀장 · MCP 서버 전담) |
-| **기간** | 2026.06.01 ~ 07.26 (8주) |
-| **테스트** | pytest 76 passed, 1 skipped (2026.08 기준) |
-| **GitHub** | https://github.com/psy0635-ctrl/waple-worklog-mcp-portfolio |
-| **상세 문서** | 저장소의 `docs/waple-worklog-mcp-상세설명.pdf` (9p) |
+Infra / Deploy
 
----
+Docker, AWS EC2, AWS RDS, Railway, Streamlit
 
-### 2. CatalogGuard Lite — Catalog CSV Data QA Tool
+AI / Workflow
 
-> 상품 카탈로그 CSV를 업로드하면 데이터 품질 오류와 개인정보 포함 여부를 자동으로 탐지하는 Streamlit 기반 검수 도구
+LangGraph, MCP, FastMCP, Local LLM
 
-**프로젝트 목적**
+Additional Experience
 
-쇼핑몰이나 상품 운영자가 카탈로그 CSV를 배포하기 전에 누락, 중복, 가격 이상치, 카테고리 불일치, 개인정보 노출 위험을 빠르게 확인할 수 있도록 만든 개인 프로젝트입니다.
+Java, C, C#, HTML/CSS, OpenCV, Linux, Git/GitHub
 
-**주요 기능**
+Core Backend은 현재 취업 준비의 중심 기술이며, Additional Experience는 수업·프로젝트를 통해 사용한 기술입니다.
 
-- CSV 업로드 및 입력 형식 검증
-- 상품 ID·상품명 중복 탐지와 정상 색상·사이즈 옵션의 오탐 방지
-- 가격 오류 및 카테고리별 가격 이상치 탐지
-- 상품명과 카테고리 불일치 탐지
-- 금지어와 개인정보 포함 여부 탐지
-- 필터링된 검수 결과 CSV 다운로드
+Featured Projects
 
-**개인정보 보호 방식**
+1. CatalogGuard Lite — Fashion Catalog Data Quality Backend
 
-이메일, 전화번호, 주민등록번호 형태를 탐지한 뒤 결과 화면에서 마스킹해 보여주도록 구성했습니다. CSV 수식 삽입 공격을 방어하는 처리도 포함했습니다.
+서로 다른 공급사 상품 CSV를 표준화하고 자동 검수한 뒤,안전하게 카탈로그에 반영하고 변경 이력과 Rollback까지 관리하는 데이터 품질 백엔드 프로젝트
 
-**검증 및 배포**
+프로젝트 목적
 
-자동 테스트 결과 `326 passed`를 확인했고, Streamlit Community Cloud에 배포했습니다.
+패션·이커머스 상품 데이터에는 공급사마다 다른 컬럼명, 누락값, 중복 상품, 비표준 색상·사이즈, 가격 오류 등 다양한 문제가 발생할 수 있습니다.
 
-| 항목 | 내용 |
-|------|------|
-| **Stack** | Python 3.11, Streamlit, pandas, pytest, GitHub, Streamlit Community Cloud |
-| **유형** | 개인 프로젝트 |
-| **GitHub** | https://github.com/psy0635-ctrl/catalogguard-lite |
-| **배포** | https://catalogguard-lite-p6jtwmdhwqcapphpghfzduo.streamlit.app/ |
-| **상세 문서** | https://github.com/psy0635-ctrl/catalogguard-lite/blob/main/docs/portfolio_project.md |
+CatalogGuard Lite는 이러한 데이터를 다음 흐름으로 처리하도록 만든 개인 프로젝트입니다.
 
----
+Supplier CSV
+    ↓
+File Validation
+    ↓
+Profile-based ETL
+    ↓
+Catalog Data Inspection
+    ↓
+PostgreSQL Persistence
+    ↓
+ETL History
+    ↓
+Promotion Preview
+    ↓
+Approval / Promotion
+    ↓
+History / Audit
+    ↓
+Rollback Preview / Rollback
 
-### 3. FIT FINDER — Body-based Fashion Guide Web
+핵심 기능
 
-> 체형을 기준으로 어울리는 핏과 피해야 할 스타일을 안내하는 패션 가이드 웹사이트
+CSV 파일 형식 및 입력값 검증
 
-**개발 배경**
+필수값 누락, 데이터 형식 오류 탐지
 
-웹프로그래밍기초 수업에서 배운 HTML/CSS를 실제 서비스 형태로 구현해보고 싶었습니다. 단순 과제 수준을 넘어, Glassmorphism Dark UI와 Video Background를 적용해 완성도 있는 정적 웹사이트를 제작했습니다.
+상품 ID 중복 및 완전 중복 탐지
 
-**주요 구현**
+가격 오류·이상치 및 sale_price 검수
 
-- 6가지 체형(Triangle, Inverted, Rectangle, Hourglass, Round, Trapezoid) 선택 시스템
-- 체형별 DO / DON'T 스타일 가이드 카드 구성
-- Glassmorphism Dark UI + Video Background Hero 디자인
-- Grid Layout 기반 체형 선택 화면 구성
-- GitHub Pages 배포
+상품명·카테고리 불일치 탐지
 
-**배운 점**
+금지어·위험 표현·개인정보 의심 정보 탐지
 
-- CSS Grid와 Flexbox를 실제 레이아웃에 적용하는 방법
-- Glassmorphism 효과 (`backdrop-filter`, `rgba`) 구현
-- 멀티 페이지 정적 사이트 구조 설계 (`index`, `guide`, `tips`, `about`)
+패션 색상·사이즈 표준화
 
-| 항목 | 내용 |
-|------|------|
-| **Stack** | HTML5, CSS3, Flexbox, Grid, GitHub Pages |
-| **유형** | 개인 프로젝트 |
-| **슬로건** | "Fit is not size. Fit is balance." |
-| **GitHub** | https://github.com/psy0635-ctrl/HTML_Project |
+동일 색상·사이즈 옵션 조합 중복 탐지
 
----
+상품 그룹 내 카테고리 불일치 탐지
 
-### 4. Suyong Portfolio
+검수 결과 PostgreSQL 저장·검색·조회
 
-> 순수 HTML/CSS만으로 제작한 싱글 페이지 포트폴리오 웹사이트
+Redis + Celery 기반 비동기 검수
 
-**개발 배경**
+공급사 JSON Profile 기반 ETL
 
-포트폴리오를 링크로 공유할 때 바로 열 수 있는 웹 형태가 필요했습니다. 외부 프레임워크 없이 기초 기술만으로 완성도 있는 결과물을 만들 수 있다는 것을 직접 확인하고 싶었습니다.
+ETL 실행 결과 및 오류 이력 조회
 
-**주요 구현**
+Promotion Preview → 사용자 승인 → 실제 카탈로그 반영
 
-- 하단 고정 네비게이션 클릭 시 Info / Projects / Stacks 섹션 전환
-- 간단한 JavaScript 클릭 핸들러와 `display: none / flex` 토글 방식으로 섹션 가시성 제어
-- CSS `opacity + translateY` 페이드인 애니메이션 적용
-- 태블릿(1024px) · 모바일(768px) 미디어 쿼리 반응형 대응
-- `backdrop-filter: blur()` 글래스모피즘 네비게이션 효과
+Promotion History 및 Audit 조회
 
-**트러블슈팅**
+Rollback Preview, 충돌 확인, Transaction 기반 Rollback
 
-섹션 전환 시 이전 섹션이 사라지지 않는 문제가 발생했습니다. 기본값을 `display: none`으로 설정하고 `active` 클래스에서만 `display: flex`를 적용하는 방식으로 해결했습니다.
+Streamlit 관리 UI
 
-| 항목 | 내용 |
-|------|------|
-| **Stack** | HTML5, CSS3, Google Fonts, Font Awesome, Vercel |
-| **유형** | 개인 프로젝트 |
-| **배포** | https://suyong-portfolio.vercel.app |
-| **GitHub** | https://github.com/psy0635-ctrl/Suyong-Portfolio |
+Docker 및 AWS EC2·RDS 실행 검증
 
----
+GitHub Actions 기반 자동 테스트·Runtime Smoke Test
 
-### 5. Semicolon Team Page
+주요 문제 해결
 
-> Semicolon 동아리 팀원 소개와 프로젝트 링크를 정리한 팀 페이지
+문제
 
-**개발 배경**
+해결
 
-팀 프로젝트 결과물을 외부에 공유할 수 있는 온라인 페이지가 필요했습니다.
+같은 CSV를 다시 올릴 때 전체 검수를 반복함
 
-**주요 구현**
+file_sha256 + inspection_version으로 기존 결과를 먼저 조회해 불필요한 재검수 방지
 
-- 팀원 소개 섹션 및 GitHub Repository 링크 연결
-- Vercel 정적 웹사이트 배포
+공급사마다 CSV 컬럼 구조가 다름
 
-| 항목 | 내용 |
-|------|------|
-| **Stack** | HTML5, CSS3, GitHub, Vercel |
-| **유형** | 팀 프로젝트 (Semicolon 동아리) |
-| **배포** | https://semicolon-teampage.vercel.app |
-| **GitHub** | https://github.com/hazyala/semicolon-teampage |
+JSON Profile 기반 매핑을 적용해 핵심 ETL 코드를 수정하지 않고 새로운 공급사 구조 추가
 
----
+검수 시간이 길어 HTTP 요청이 오래 걸릴 수 있음
 
-### 6. Weather Fit Talk
+Redis + Celery로 검수 작업을 비동기 처리
 
-> 날씨와 상황에 맞는 옷차림을 추천하는 로컬 LLM 기반 AI 스타일링 챗봇
+ETL 결과를 바로 운영 카탈로그에 반영하면 위험함
 
-**개발 배경**
+Preview → 승인 → Promotion 단계로 분리
 
-OpenAI · Gemini API Key 없이 로컬 환경에서 실행 가능한 AI 챗봇을 만들고 싶었습니다. 외부 API 비용 없이 LLM을 직접 구동하는 방식을 실험하는 것이 목적이었습니다.
+Preview 이후 데이터가 변경될 수 있음
 
-**주요 구현**
+SHA-256 기반 Preview 검증으로 사용자가 확인한 내용과 실제 적용 내용의 불일치 방지
 
-- Ollama + Gemma 모델로 로컬 LLM 구동 (API Key 불필요)
-- 사이드바에서 기온 · 바람 · 상황 · 스타일 조건 입력
-- DuckDuckGo 검색 옵션으로 최신 날씨 정보 보완
-- 사용자 사이드바 조건이 채팅 입력보다 우선 반영되는 구조 설계
+Promotion 이후 변경 원인을 추적하기 어려움
 
-| 항목 | 내용 |
-|------|------|
-| **Stack** | Python, Streamlit, Ollama, Gemma, DuckDuckGo Search |
-| **유형** | 개인 프로젝트 |
-| **GitHub** | https://github.com/psy0635-ctrl/Weather-Fit-Talk-Local-LLM |
+Promotion History + Audit 기록 추가
 
----
+잘못 반영한 데이터를 안전하게 되돌리기 어려움
 
-### 7. SafeTrade — 중고거래 사기 위험도 체크 프로그램
+Rollback Preview + Conflict 확인 + DB Transaction으로 복구
 
-> 5가지 질문으로 중고거래 사기 위험도를 점수로 계산해주는 Java 콘솔 프로그램
+Docker 이미지가 로컬에서는 빌드되지만 서버에서 깨질 수 있음
 
-**개발 배경**
+GitHub Actions에서 이미지 빌드 → import → migration → Uvicorn 실행 → /health 200까지 자동 검증
 
-중고거래 사기 피해가 늘어나고 있지만 거래 전 위험 요소를 체크할 수 있는 간단한 도구가 없었습니다. 실생활 문제를 프로그램으로 해결하는 경험을 목적으로 Java 수업 과제로 제작했습니다.
+테스트와 품질 관리
 
-**주요 구현**
+최신 정리 기준 일반 테스트:
 
-- 전자기기 · 의류 · 티켓 · 게임용품 · 기타 5개 카테고리 물품 선택
-- 위험 패턴 5가지(저가, 직거래 거부, 선입금, 정보 부족, 급유도)를 질문으로 점수화
-- 총점 기준 4단계 위험 등급 출력 (안전 / 주의 / 위험 / 매우 위험)
-- 배열 + for문 조합으로 질문 목록과 점수를 구조화하여 관리
+1042 passed
+88 skipped
+4 deselected
 
-**배운 점**
+추가로 다음 흐름을 자동 검증했습니다.
 
-- Scanner, switch문, 배열, for문, if문을 실제 프로그램에 통합 적용
-- 단순 계산이 아닌 실생활 문제를 프로그램으로 해결하는 설계 경험
+일반 Unit / Integration Test
 
-| 항목 | 내용 |
-|------|------|
-| **Stack** | Java, IntelliJ IDEA |
-| **유형** | 개인 프로젝트 (수업 과제) |
-| **GitHub** | [Java_Project/src/Java_Project/SafeTrade.java](https://github.com/psy0635-ctrl/Java_Project/blob/main/src/Java_Project/SafeTrade.java) (Java_Project 레포 내 중간고사 과제) |
+Redis·Celery Async Inspection E2E
 
----
+Streamlit Smoke Test
 
-### 8. C Calculator — 5인 팀 사칙연산 계산기
+Chromium Browser E2E
 
-> C언어 함수 분리와 Git 협업 방식을 실습하기 위한 팀 프로젝트
+AWS Docker Runtime Smoke Test
 
-**팀 구성 및 담당**
+Alembic Migration 실행 검증
 
-| 이름 | 담당 | 구현 내용 |
-|------|------|----------|
-| 민재 | 덧셈 `+` | `add()` 함수 구현 |
-| 가영 | 뺄셈 `-` | `add(a, -b)` 방식으로 구현 |
-| 형준 | 곱셈 `*` | `multiply()` 함수 구현 |
-| **수용** | **나눗셈 `/`** | **`divide()` + 이중 예외처리 구현** |
-| 석현 | 나머지 `%` | `modulo()` 함수 구현 |
+FastAPI /health, /ready 상태 점검
 
-**나눗셈 구현 — 이중 방어 구조 (수용 담당)**
+10,000행 데이터 검수 성능도 별도로 측정하여 실행 시간과 메모리 사용량을 기록했습니다.
 
-main에서 1차 검사, `divide()` 내부에서 2차 검사를 적용했습니다. 함수가 다른 곳에서 재사용될 때도 독립적으로 안전하게 동작하도록 설계했습니다.
+기술 스택
 
-**트러블슈팅**
+항목
 
-병합 후 팀원마다 다른 코드 스타일로 인해 중괄호 누락 컴파일 에러가 발생했습니다. GCC 에러 메시지의 줄 번호를 기준으로 추적해 해결했고, 이후 팀 내 코딩 컨벤션을 사전 통일했습니다.
+내용
 
-| 항목 | 내용 |
-|------|------|
-| **Stack** | C, GCC, Git, GitHub |
-| **유형** | 5인 팀 프로젝트 |
-| **GitHub** | [Semicolon/C언어 사칙연산 계산기 팀 프로젝트](https://github.com/psy0635-ctrl/Semicolon/tree/main/C%EC%96%B8%EC%96%B4%20%EC%82%AC%EC%B9%99%EC%97%B0%EC%82%B0%20%EA%B3%84%EC%82%B0%EA%B8%B0%20%ED%8C%80%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8) (독립 저장소 아님) |
+Backend
 
----
+Python 3.11, FastAPI
 
-## Study Tracks
+Database
 
-| 분야 | 학습 내용 |
-|------|----------|
-| **C** | 변수, 조건문, 반복문, 함수, 배열, 포인터, 파일 입출력 |
-| **C#** | 클래스, 객체, 생성자, 메서드, 접근 제어자 |
-| **Java** | 기본 문법, 클래스 설계, Scanner, switch, 배열 |
-| **Python** | 데이터 처리, 자동화, OpenCV, NumPy, Matplotlib, LangChain |
-| **HTML / CSS** | Semantic Tag, Flexbox, Grid, Glassmorphism, 반응형 디자인 |
-| **Database** | SELECT, INSERT, UPDATE, DELETE, JOIN, 정규화 |
-| **OpenCV** | Morphology, Histogram, Thresholding, 이미지 변환 |
-| **Linux** | ls, cd, grep, find, chmod, ps, kill, vi |
-| **AI / LLM** | Local LLM (Ollama), LangChain, Claude API, RAG 구조 |
+PostgreSQL, SQLAlchemy, Alembic
 
----
+Data
 
-## Activities
+pandas, CSV, Supplier Profile ETL
 
-| 활동 | 상태 |
-|------|------|
-| 미래내일 일경험 — 유시스 Waple 업무일지 MCP 서버 | 완료 (2026.06~07) |
-| Semicolon 개발 동아리 활동 | 진행 중 |
-| Linux Master 2급 학습 | 진행 중 |
-| Git & GitHub 협업 흐름 학습 | 진행 중 |
-| AI / LLM / RAG 구조 학습 | 탐색 중 |
-| 데이터 공모전 아이디어 기획 | 기획 중 |
-| GitHub Pages · Vercel 배포 | 완료 |
+Async
 
----
+Redis, Celery
 
-## Repository Map
+UI
 
-```
+Streamlit
+
+Test
+
+pytest, AppTest, Chromium Browser E2E
+
+CI
+
+GitHub Actions
+
+Infra
+
+Docker, AWS EC2, AWS RDS
+
+Monitoring
+
+Structured Log, Request ID, /health, /ready
+
+유형
+
+개인 프로젝트
+
+Links
+
+GitHub: https://github.com/psy0635-ctrl/catalogguard-lite
+
+Streamlit Demo: https://catalogguard-lite-p6jtwmdhwqcapphpghfzduo.streamlit.app/
+
+Project Document: https://github.com/psy0635-ctrl/catalogguard-lite/blob/main/docs/portfolio_project.md
+
+2. Waple Worklog MCP Server — 기업 연계 프로젝트
+
+Git 기록과 세션 로그를 근거로 업무일지 초안을 생성하고,사용자가 검토·승인한 내용만 HR SaaS 플랫폼에 등록하는 MCP 서버
+
+프로젝트 배경
+
+미래내일 일경험 프로젝트형 프로그램으로 진행한 유시스(UXIS) × HARP 4인 팀 프로젝트입니다.
+
+8주 동안 AI Report와 MCP 기반 업무 자동화 기능을 개발하였으며, 저는 팀 리드와 MCP 서버 개발을 담당했습니다.
+
+핵심 구현
+
+Git 기록·사용자 메모·세션 로그 기반 업무일지 초안 생성
+
+초안 생성과 실제 SaaS 등록 도구 분리
+
+사용자 검토·수정·승인 이후에만 등록되도록 흐름 설계
+
+작성 근거 라벨([커밋], [사용자 메모], [세션 로그]) 부착
+
+근거가 없는 항목은 임의 생성하지 않고 확인 필요로 분리
+
+Local stdio / Remote Streamable HTTP Transport 지원
+
+ContextVar를 사용한 요청별 API Key·초안 격리
+
+nginx + HTTPS 구성
+
+제한된 서버 권한 환경에서 사용자 단위 systemd 자동 재시작 구성
+
+실제 SaaS 환경 연동 및 라이브 시연
+
+트러블슈팅 기록
+
+성공한 결과뿐 아니라 다음 문제의 원인과 대응 과정도 문서화했습니다.
+
+DNS Rebinding 방지 설정으로 발생한 HTTP 421 오류
+
+TLS 인증서 중간 체인 누락
+
+API Key 평문 노출 문제와 대응
+
+웹 커넥터 연결 실패 원인을 서버 로그로 추적
+
+코드 리뷰 피드백을 반영한 다중 사용자 상태 격리 구조 개선
+
+기술 스택
+
+항목
+
+내용
+
+Backend / AI
+
+Python, MCP Python SDK(FastMCP), LangGraph
+
+HTTP
+
+requests, Streamable HTTP
+
+Test
+
+pytest
+
+Infra
+
+nginx, HTTPS, systemd
+
+유형
+
+4인 팀 프로젝트
+
+역할
+
+팀 리드 · MCP 서버 개발
+
+기간
+
+2026.06.01 ~ 2026.07.26
+
+테스트 기록
+
+23종 — 22 passed, 1 skipped
+
+Links
+
+GitHub: https://github.com/psy0635-ctrl/waple-worklog-mcp-portfolio
+
+Detailed Document: docs/waple-worklog-mcp-상세설명.pdf
+
+Other Projects
+
+대표 프로젝트 외 작업은 사용 기술과 목적 중심으로 간단히 정리했습니다.
+
+프로젝트
+
+핵심 내용
+
+기술
+
+Weather Fit Talk
+
+날씨·상황 조건을 반영하는 로컬 LLM 스타일링 챗봇
+
+Python, Streamlit, Ollama, Gemma
+
+FIT FINDER
+
+체형별 패션 가이드 반응형 웹사이트
+
+HTML5, CSS3, Flexbox, Grid, GitHub Pages
+
+Suyong Portfolio
+
+프로젝트와 기술을 정리한 개인 포트폴리오 웹사이트
+
+HTML5, CSS3, JavaScript, Vercel
+
+SafeTrade
+
+질문 기반 중고거래 사기 위험도 계산 프로그램
+
+Java
+
+C Calculator
+
+함수 분리와 Git 협업을 연습한 5인 팀 계산기
+
+C, GCC, Git, GitHub
+
+Semicolon Team Page
+
+동아리 팀원 및 프로젝트 공유 페이지
+
+HTML5, CSS3, Vercel
+
+Repository Links
+
+Weather Fit Talk: https://github.com/psy0635-ctrl/Weather-Fit-Talk-Local-LLM
+
+FIT FINDER: https://github.com/psy0635-ctrl/HTML_Project
+
+Suyong Portfolio: https://github.com/psy0635-ctrl/Suyong-Portfolio
+
+Semicolon Team Page: https://github.com/hazyala/semicolon-teampage
+
+Engineering Highlights
+
+프로젝트를 통해 다음과 같은 백엔드 문제를 직접 다뤘습니다.
+
+Data Quality
+
+Raw CSV
+→ Validation
+→ Standardization
+→ Inspection
+→ Persistence
+
+단순 CRUD가 아니라 잘못된 데이터가 시스템에 들어오는 과정 자체를 제어하는 구조를 구현했습니다.
+
+Safe Data Change
+
+Preview
+→ User Approval
+→ Transaction
+→ Audit
+→ Rollback
+
+데이터 변경 자체보다 잘못 변경되었을 때 추적하고 복구할 수 있는가를 고려했습니다.
+
+Async Processing
+
+FastAPI
+→ Redis
+→ Celery Worker
+→ PostgreSQL
+
+오래 걸릴 수 있는 작업을 API 요청과 분리해 처리했습니다.
+
+Test & CI
+
+Code Change
+→ pytest
+→ Integration / E2E
+→ Docker Runtime Check
+→ GitHub Actions
+
+로컬에서만 동작하는 코드를 만드는 대신 자동 검증 가능한 상태를 유지하려고 했습니다.
+
+Repository Map
+
 psy0635-ctrl/
-├── waple-worklog-mcp-portfolio # 업무일지 MCP 서버 (Python, 인턴 프로젝트)
-├── Suyong-Portfolio           # 포트폴리오 웹사이트 (HTML/CSS)
-├── catalogguard-lite          # 상품 카탈로그 CSV 데이터 검수 도구 (Streamlit)
-├── HTML_Project               # FIT FINDER 패션 가이드 웹 (HTML/CSS)
-├── Weather-Fit-Talk-Local-LLM # 로컬 LLM 스타일링 챗봇 (Python)
-├── Java_Project               # SafeTrade 포함 (Java 과제)
-└── Semicolon                  # C 계산기 팀 프로젝트 포함
-```
+├── catalogguard-lite
+│   └── Fashion catalog QA / ETL / Promotion / Rollback backend
+│
+├── waple-worklog-mcp-portfolio
+│   └── MCP-based worklog automation server
+│
+├── Weather-Fit-Talk-Local-LLM
+│   └── Local LLM styling chatbot
+│
+├── HTML_Project
+│   └── FIT FINDER fashion guide
+│
+├── Suyong-Portfolio
+│   └── Personal portfolio website
+│
+├── SafeTrade
+│   └── Java console project
+│
+└── Study-Archive
+    └── C / C# / Java / Python / DB / Linux / AI study records
 
----
+Current Focus
 
-## Goals
+현재는 새로운 프로젝트를 계속 늘리기보다 Python Backend 취업에 직접 연결되는 역량을 깊게 만드는 것에 집중하고 있습니다.
 
-**단기**
-- Waple 업무일지 MCP 서버 개선 이어가기 (종료 후 지속)
-- GitHub 포트폴리오 완성도 강화
-- FIT FINDER JavaScript 인터랙션 추가
+CatalogGuard Lite를 기반으로 FastAPI·PostgreSQL·ETL·비동기 처리 경험 정리
 
-**장기**
-- AI + Web 융합 개발자로 성장
-- Computer Vision 심화 학습
-- 실무에 가까운 문제 해결 역량 확보
+Docker·AWS 배포와 CI/CD 설명력 강화
 
----
+SQL·DB 성능 개선 및 데이터 처리 역량 보완
 
-## Contact
+코딩 테스트와 CS 기초 병행
 
-| 플랫폼 | 링크 |
-|--------|------|
-| **GitHub** | https://github.com/psy0635-ctrl |
-| **Portfolio** | https://suyong-portfolio.vercel.app |
+LangGraph·MCP 프로젝트 경험 문서화
 
----
+이력서·포트폴리오 기반 실제 채용 지원
+
+Contact
+
+플랫폼
+
+링크
+
+GitHub
+
+https://github.com/psy0635-ctrl
+
+Portfolio
+
+https://suyong-portfolio.vercel.app
 
 <div align="center">
 
-> 꾸준한 학습과 기록은 가장 강력한 성장 루틴이다.
+Build → Test → Deploy → Verify → Document
 
-**Build small. Learn deep. Keep shipping.**
+작게 구현하고, 실제로 검증하고, 문제 해결 과정을 기록합니다.
 
 </div>
