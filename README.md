@@ -76,7 +76,7 @@
 | **Stack** | Python, MCP Python SDK(FastMCP), requests, pytest, nginx, systemd |
 | **유형** | 4인 팀 프로젝트 (팀장 · MCP 서버 전담) |
 | **기간** | 2026.06.01 ~ 07.26 (8주) |
-| **테스트** | 23종 (22 passed, 1 skipped) |
+| **테스트** | pytest 76 passed, 1 skipped (2026.08 기준) |
 | **GitHub** | https://github.com/psy0635-ctrl/waple-worklog-mcp-portfolio |
 | **상세 문서** | 저장소의 `docs/waple-worklog-mcp-상세설명.pdf` (9p) |
 
