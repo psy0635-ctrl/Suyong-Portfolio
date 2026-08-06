@@ -319,13 +319,8 @@ psy0635-ctrl/
 ├── catalogguard-lite          # 상품 카탈로그 CSV 데이터 검수 도구 (Streamlit)
 ├── HTML_Project               # FIT FINDER 패션 가이드 웹 (HTML/CSS)
 ├── Weather-Fit-Talk-Local-LLM # 로컬 LLM 스타일링 챗봇 (Python)
-├── SafeTrade                  # 중고거래 사기 위험도 체크 (Java)
-├── C-Calculator               # 5인 팀 계산기 (C)
-└── Study-Archive              # 언어별 학습 기록
-    ├── C / CSharp / Java / Python
-    ├── HTML_CSS / Database
-    ├── OpenCV / Linux
-    └── AI_LLM
+├── Java_Project               # SafeTrade 포함 (Java 과제)
+└── Semicolon                  # C 계산기 팀 프로젝트 포함
 ```
 
 ---
